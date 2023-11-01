@@ -26,3 +26,5 @@ replay_pid*
 
 /*.iml
 /*/*.iml
+/.idea/
+/chatbot-api-interfaces/target/
