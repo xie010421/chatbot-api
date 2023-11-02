@@ -1,5 +1,6 @@
 package cn.chatbot.api.test;
 
+import com.plexpt.chatgpt.util.Proxys;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -11,9 +12,11 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.junit.jupiter.api.Test;
 import sun.net.www.http.HttpClient;
-
+import cn.hutool.http.*;
 import javax.swing.text.html.parser.Entity;
 import java.io.IOException;
+import java.net.Proxy;
+
 
 public class ApiTest {
     /**
@@ -77,5 +80,68 @@ public class ApiTest {
     }
 
 
+    @Test
+    public void test_ChatGpt_Api() throws IOException {
+        CloseableHttpClient client = HttpClientBuilder.create().build();
+        /*Proxy proxy = Proxys.http("127.0.0.1", 7890);
+        String paramJson = "{\n" +
+                "     \"model\": \"gpt-3.5-turbo\",\n" +
+                "     \"messages\": [{\"role\": \"user\", \"content\": \"请帮我写一个冒泡排序！\"}],\n" +
+                "     \"temperature\": 0.7\n" +
+                "   }";
+        HttpResponse response = HttpRequest.post("https://api.openai.com/v1/chat/completions")
+                .header("Content-Type","application/json")
+                .bearerAuth("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")
+                .setProxy(proxy)
+                .body(paramJson)
+                .timeout(600000)
+                .execute();*/
+
+
+        HttpPost post = new HttpPost("https://api.openai.com/v1/chat/completions");
+        //HttpPost post = new HttpPost("https://api.openai.com/v1/completions");
+        post.addHeader("Content-Type","application/json");
+        post.addHeader("Authorization","Bearer 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");
+        String paramJson = "{\n" +
+                "     \"model\": \"gpt-3.5-turbo\",\n" +
+                "     \"messages\": [{\"role\": \"user\", \"content\": \"请帮我写一个冒泡排序！\"}],\n" +
+                "     \"temperature\": 0.7\n" +
+                "   }";
+        //String paramJson = "{\"model\": \"text-davinci-003\", \"prompt\": \"帮我写一个java冒泡排序\", \"temperature\": 0, \"max_tokens\": 1024}";
+        StringEntity stringEntity = new StringEntity(paramJson, ContentType.create("text/json", "UTF-8"));
+        post.setEntity(stringEntity);
+        //4.获取响应数据
+        CloseableHttpResponse response = client.execute(post);
+        //测试
+        /*System.out.println(response.getStatus());
+        System.out.println(response.body());*/
+        if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
+            //将响应数据由JSON转为字符串
+            String res = EntityUtils.toString(response.getEntity());
+            System.out.println(res);
+        }else {
+            //输出错误状态码
+            System.out.println(response.getStatusLine().getStatusCode());
+        }
+    }
+
+    @Test
+    public void testOpenAi02(){
+        Proxy proxy = Proxys.http("127.0.0.1", 7890);
+        String paramJson = "{\n" +
+                "     \"model\": \"gpt-3.5-turbo\",\n" +
+                "     \"messages\": [{\"role\": \"user\", \"content\": \"请帮我写一个冒泡排序！\"}],\n" +
+                "     \"temperature\": 0.7\n" +
+                "   }";
+        HttpResponse response = HttpRequest.post("https://api.openai.com/v1/chat/completions")
+                .header("Content-Type","application/json")
+                .bearerAuth("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")
+                .setProxy(proxy)
+                .body(paramJson)
+                .timeout(600000)
+                .execute();
+        System.out.println(response.getStatus());
+        System.out.println(response.body());
+    }
 
 }

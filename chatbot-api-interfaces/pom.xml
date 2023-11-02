@@ -12,6 +12,18 @@
     <artifactId>chatbot-api-interfaces</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>com.github.plexpt</groupId>
+            <artifactId>chatgpt</artifactId>
+            <version>4.0.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-http</artifactId>
+            <version>5.8.18</version>
+        </dependency>
+
         <!--引入domain模块-->
         <dependency>
             <groupId>cn.chat.api</groupId>

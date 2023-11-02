@@ -1,4 +1,4 @@
-package cn.chatbot.api.domain.model.req;
+package cn.chatbot.api.domain.zsxq.model.req;
 
 public class ReqData {
     private String text;

@@ -1,10 +1,10 @@
-package cn.chatbot.api.domain.services;
+package cn.chatbot.api.domain.zsxq.services;
 
-import cn.chatbot.api.domain.IXzxApi;
-import cn.chatbot.api.domain.model.aggregates.UnAnsweredQuestionsAggregates;
-import cn.chatbot.api.domain.model.req.AnswerReq;
-import cn.chatbot.api.domain.model.req.ReqData;
-import cn.chatbot.api.domain.model.res.AnswerRes;
+import cn.chatbot.api.domain.zsxq.IXzxApi;
+import cn.chatbot.api.domain.zsxq.model.aggregates.UnAnsweredQuestionsAggregates;
+import cn.chatbot.api.domain.zsxq.model.req.AnswerReq;
+import cn.chatbot.api.domain.zsxq.model.req.ReqData;
+import cn.chatbot.api.domain.zsxq.model.res.AnswerRes;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpStatus;

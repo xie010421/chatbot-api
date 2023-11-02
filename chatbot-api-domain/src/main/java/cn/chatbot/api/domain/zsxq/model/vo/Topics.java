@@ -1,4 +1,4 @@
-package cn.chatbot.api.domain.model.vo;
+package cn.chatbot.api.domain.zsxq.model.vo;
 
 public class Topics {
     private String topic_id;

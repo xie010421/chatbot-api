@@ -1,6 +1,6 @@
-package cn.chatbot.api.domain.model.vo;
+package cn.chatbot.api.domain.zsxq.model.vo;
 
-import cn.chatbot.api.domain.model.res.RespData;
+import cn.chatbot.api.domain.zsxq.model.res.RespData;
 
 public class Root {
     private boolean succeeded;

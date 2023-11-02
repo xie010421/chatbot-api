@@ -1,6 +1,6 @@
-package cn.chatbot.api.domain.model.aggregates;
+package cn.chatbot.api.domain.zsxq.model.aggregates;
 
-import cn.chatbot.api.domain.model.res.RespData;
+import cn.chatbot.api.domain.zsxq.model.res.RespData;
 
 public class UnAnsweredQuestionsAggregates {
     private boolean succeeded;

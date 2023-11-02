@@ -1,4 +1,4 @@
-package cn.chatbot.api.domain.model.res;
+package cn.chatbot.api.domain.zsxq.model.res;
 
 public class AnswerRes {
     private boolean succeeded;

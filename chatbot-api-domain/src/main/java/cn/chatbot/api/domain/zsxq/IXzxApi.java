@@ -1,7 +1,7 @@
-package cn.chatbot.api.domain;
+package cn.chatbot.api.domain.zsxq;
 
 
-import cn.chatbot.api.domain.model.aggregates.UnAnsweredQuestionsAggregates;
+import cn.chatbot.api.domain.zsxq.model.aggregates.UnAnsweredQuestionsAggregates;
 
 import java.io.IOException;
 

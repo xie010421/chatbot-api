@@ -1,6 +1,6 @@
-package cn.chatbot.api.domain.model.res;
+package cn.chatbot.api.domain.zsxq.model.res;
 
-import cn.chatbot.api.domain.model.vo.Topics;
+import cn.chatbot.api.domain.zsxq.model.vo.Topics;
 
 import java.util.List;
 
