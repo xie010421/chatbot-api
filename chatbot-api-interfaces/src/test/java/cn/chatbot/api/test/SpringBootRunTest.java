@@ -38,14 +38,14 @@ public class SpringBootRunTest {
         UnAnsweredQuestionsAggregates unAnsweredQuestionsAggregates = xzxApi.queryUnAnsweredQuestionsTopicId(groupId,cookie);
         logger.info("测试结果：{}",JSON.toJSONString(unAnsweredQuestionsAggregates));
 
-        //String text = "测试个够吧";
+        String text = "测试个够吧";
 
 
         List<Topics> topics = unAnsweredQuestionsAggregates.getResp_data().getTopics();
         for (Topics topic : topics
              ) {
             String topicId = topic.getTopic_id();
-            String text = openAI.doChatGPT(topic.getQuestion().getText());
+            //String text = openAI.doChatGPT(topic.getQuestion().getText());
             boolean silenced = false;  //似乎是获取回答是否是私有化
             Boolean answer = xzxApi.answer(groupId, cookie, topicId, text, false);
             logger.info("topicId:{} anwer:{}" ,topicId,answer);
@@ -53,4 +53,9 @@ public class SpringBootRunTest {
         }
     }
 
+    @Test
+    public void testOpenApi() throws IOException {
+        String answer = openAI.doChatGPT("请使用java帮我写一个冒泡排序算法！");
+        System.out.println(answer);
+    }
 }

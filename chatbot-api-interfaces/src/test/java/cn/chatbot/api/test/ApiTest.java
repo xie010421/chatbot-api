@@ -1,5 +1,6 @@
 package cn.chatbot.api.test;
 
+import cn.chatbot.api.domain.gptai.service.OpenAI;
 import com.plexpt.chatgpt.util.Proxys;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -13,12 +14,17 @@ import org.apache.http.util.EntityUtils;
 import org.junit.jupiter.api.Test;
 import sun.net.www.http.HttpClient;
 import cn.hutool.http.*;
+import cn.chatbot.api.domain.gptai.service.OpenAI;
+import javax.annotation.Resource;
 import javax.swing.text.html.parser.Entity;
 import java.io.IOException;
 import java.net.Proxy;
 
 
 public class ApiTest {
+    @Resource
+    private OpenAI openAI;
+
     /**
      * 获取提问请求数据
      * @throws IOException
@@ -135,7 +141,7 @@ public class ApiTest {
                 "   }";
         HttpResponse response = HttpRequest.post("https://api.openai.com/v1/chat/completions")
                 .header("Content-Type","application/json")
-                .bearerAuth("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")
+                .bearerAuth("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")
                 .setProxy(proxy)
                 .body(paramJson)
                 .timeout(600000)
@@ -143,5 +149,30 @@ public class ApiTest {
         System.out.println(response.getStatus());
         System.out.println(response.body());
     }
+
+    /*//添加请求头
+        get.addHeader("cookie","zsxq_access_token=BEE72A12-88D6-C7C4-8109-2FAC72616544_DFBEF78A365333B7; zsxqsessionid=fd3d24f73bd49e9dc114f2a39ece9eb0; abtest_env=product; sajssdk_2015_cross_new_user=1; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22415844255444888%22%2C%22first_id%22%3A%2218b8a3d26f011db-07a46a7938f5894-26031151-1327104-18b8a3d26f16c2%22%2C%22props%22%3A%7B%7D%2C%22identities%22%3A%22eyIkaWRlbnRpdHlfY29va2llX2lkIjoiMThiOGEzZDI2ZjAxMWRiLTA3YTQ2YTc5MzhmNTg5NC0yNjAzMTE1MS0xMzI3MTA0LTE4YjhhM2QyNmYxNmMyIiwiJGlkZW50aXR5X2xvZ2luX2lkIjoiNDE1ODQ0MjU1NDQ0ODg4In0%3D%22%2C%22history_login_id%22%3A%7B%22name%22%3A%22%24identity_login_id%22%2C%22value%22%3A%22415844255444888%22%7D%2C%22%24device_id%22%3A%2218b8a3d26f011db-07a46a7938f5894-26031151-1327104-18b8a3d26f16c2%22%7D");
+        get.addHeader("Content-Type","application/json, text/plain");
+        //封装响应数据
+        CloseableHttpResponse response = httpClient.execute(get);
+        if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
+            //将响应数据由JSON转为字符串
+            String res = EntityUtils.toString(response.getEntity());
+            System.out.println(res);
+        }else {
+            //输出错误状态码
+            System.out.println(response.getStatusLine().getStatusCode());
+        }*/
+    @Test
+    public void testHutool(){
+        HttpResponse response = HttpRequest.get("https://api.zsxq.com/v2/groups/51112814845484/topics?scope=unanswered_questions&count=20")
+                .header("Content-Type","application/json, text/plain")
+                .cookie("zsxq_access_token=BEE72A12-88D6-C7C4-8109-2FAC72616544_DFBEF78A365333B7; zsxqsessionid=fd3d24f73bd49e9dc114f2a39ece9eb0; abtest_env=product; sajssdk_2015_cross_new_user=1; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22415844255444888%22%2C%22first_id%22%3A%2218b8a3d26f011db-07a46a7938f5894-26031151-1327104-18b8a3d26f16c2%22%2C%22props%22%3A%7B%7D%2C%22identities%22%3A%22eyIkaWRlbnRpdHlfY29va2llX2lkIjoiMThiOGEzZDI2ZjAxMWRiLTA3YTQ2YTc5MzhmNTg5NC0yNjAzMTE1MS0xMzI3MTA0LTE4YjhhM2QyNmYxNmMyIiwiJGlkZW50aXR5X2xvZ2luX2lkIjoiNDE1ODQ0MjU1NDQ0ODg4In0%3D%22%2C%22history_login_id%22%3A%7B%22name%22%3A%22%24identity_login_id%22%2C%22value%22%3A%22415844255444888%22%7D%2C%22%24device_id%22%3A%2218b8a3d26f011db-07a46a7938f5894-26031151-1327104-18b8a3d26f16c2%22%7D")
+                .execute();
+        System.out.println(response.getStatus());
+        System.out.println(response.body());
+    }
+
+
 
 }

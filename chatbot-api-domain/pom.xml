@@ -11,6 +11,18 @@
 
     <artifactId>chatbot-api-domain</artifactId>
     <dependencies>
+        <!--github代理-->
+        <dependency>
+            <groupId>com.github.plexpt</groupId>
+            <artifactId>chatgpt</artifactId>
+            <version>4.0.5</version>
+        </dependency>
+        <!--发送http请求的一种框架-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-http</artifactId>
+            <version>5.8.18</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
